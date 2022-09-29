@@ -19,4 +19,3 @@ jobs:
         run: |
           pwd
           false
-        continue-on-error: true
