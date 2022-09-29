@@ -18,4 +18,5 @@ jobs:
       - name: What my workdir now
         run: |
           pwd
+          false
         continue-on-error: true
