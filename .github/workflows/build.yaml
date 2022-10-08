@@ -13,6 +13,9 @@ jobs:
           pwd
           mkdir stuff/
           cd stuff/
+          echo "::group::My title"
+          pwd
+          echo "::endgroup::"
           pwd
 
       - name: What my workdir now
