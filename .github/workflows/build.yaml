@@ -15,6 +15,10 @@ jobs:
           cd stuff/
           echo "::group::My title"
           pwd
+          echo "::group::nested group"
+          echo "nested message"
+          echo "::endgroup::"
+          echo "nested group closed"
           echo "::endgroup::"
           pwd
 
