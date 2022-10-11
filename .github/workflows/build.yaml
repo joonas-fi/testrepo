@@ -3,26 +3,15 @@ name: Build
 on: [push]
 
 jobs:
-  build:
+  hello_world_job:
     runs-on: ubuntu-latest
+    name: A job to say hello
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Cd somewhere
-        run: |
-          pwd
-          mkdir stuff/
-          cd stuff/
-          echo "::group::My title"
-          pwd
-          echo "::group::nested group"
-          echo "nested message"
-          echo "::endgroup::"
-          echo "nested group closed"
-          echo "::endgroup::"
-          pwd
-
-      - name: What my workdir now
-        run: |
-          pwd
-          false
+      - name: Hello world action step
+        id: hello
+        uses: function61/turbobob-action@v1
+        with:
+          who-to-greet: 'Mona the Octocat'
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
