@@ -28,8 +28,7 @@
 				"dev": ["bash"]
 			},
 			"pass_envs": [
-				"GITHUB_TOKEN",
-				"EVENTHORIZON"
+				"GITHUB_TOKEN"
 			]
 		}
 	],
