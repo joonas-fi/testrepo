@@ -1,7 +1,5 @@
 module github.com/joonas-fi/sadetutka
 
-# test
-
 go 1.16
 
 require (
