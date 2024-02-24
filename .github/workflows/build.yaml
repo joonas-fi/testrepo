@@ -9,7 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: env
+      - run: |
+          echo "DEFAULT_BRANCH_NAME=$DEFAULT_BRANCH_NAME""
+          DEFAULT_BRANCH_NAME=$DEFAULT_BRANCH_NAME env
       - uses: function61/turbobob-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
