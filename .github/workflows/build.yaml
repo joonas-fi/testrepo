@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          echo "DEFAULT_BRANCH_NAME=$DEFAULT_BRANCH_NAME""
+          echo "DEFAULT_BRANCH_NAME=$DEFAULT_BRANCH_NAME"
           DEFAULT_BRANCH_NAME=$DEFAULT_BRANCH_NAME env
       - uses: function61/turbobob-action@master
         env:
