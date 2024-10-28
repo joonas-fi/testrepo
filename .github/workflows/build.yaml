@@ -8,10 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: |
-          echo "DEFAULT_BRANCH_NAME=$DEFAULT_BRANCH_NAME"
-          DEFAULT_BRANCH_NAME=$DEFAULT_BRANCH_NAME env
-      - uses: function61/turbobob-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          docker buildx
+          docker-buildx
