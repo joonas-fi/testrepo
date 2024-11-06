@@ -1,14 +1,64 @@
-name: Build
+name: Update component in manifest
 
-# dummy change
-
-on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      base_branch:
+        description: 'Base branch to create the new branch from'
+        default: 'develop'
+        required: true
+      target_branch:
+        description: 'Target branch name. If "AUTOGENERATE", a unique branch name will be generated'
+        default: 'AUTOGENERATE'
+        required: true
 
 jobs:
-  build:
+  update_component:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - run: |
-          docker buildx
-          docker-buildx
+      - name: Checkout base branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.base_branch }}
+
+      - name: Checkout target branch
+        run: |
+          set -eu
+
+          # set up Git
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # determine branch name
+          if [ "${{ github.event.inputs.target_branch }}" == "AUTOGENERATE" ]; then
+            export BRANCH_NAME="feature/update-component-${{ github.run_id }}"
+          else
+            export BRANCH_NAME="${{ github.event.inputs.target_branch }}"
+          fi
+          echo "branch_name=$BRANCH_NAME" >> $GITHUB_ENV
+
+          # checkout or create branch
+          if git ls-remote --exit-code --heads origin ${{ env.branch_name }}; then
+            # If the branch exists, check it out
+            git fetch origin ${{ env.branch_name }}
+            git checkout ${{ env.branch_name }}
+          else
+            # If the branch does not exist, create a new branch from base_branch
+            git checkout -b ${{ env.branch_name }}
+          fi
+
+      - name: Make changes
+        run: |
+          set -eu
+          date >> manifest.json
+          git add manifest.json
+
+      - name: Push changes to branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -eu
+          git commit -m "Update component in manifest" || echo "No changes to commit"
+          # for `HEAD` see: https://stackoverflow.com/a/4183856
+          git push origin HEAD:${{ env.branch_name }}
