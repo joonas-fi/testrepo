@@ -3,7 +3,15 @@
   "name": "example",
   // Turbo Bob enabled image which basically uses Bob + Docker to launch sibling containers where the actual dev tools are
   "image": "ghcr.io/joonas-fi/testrepo:latest",
-  "runArgs": [ "--mount=type=bind,source=/,destination=/host" ],
+  // for some reason the mount args given here do not work if given in the `mounts` field
+  "runArgs": [
+     // to be able to copy Bob to host-side
+     "--mount=type=bind,source=/,destination=/host",
+     // to be able to reuse build cache etc.
+     "--mount=type=bind,source=/tmp,destination=/tmp"
+   ],
+  // Bob maps this from host-side to new containers it launches so we must copy it to host
+  "onCreateCommand": ["cp", "/usr/local/bin/bob", "/host/usr/local/bin/bob"],
   "mounts": [
     "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock"
   ]
