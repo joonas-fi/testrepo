@@ -3,8 +3,8 @@
   "name": "example",
   // Turbo Bob enabled image which basically uses Bob + Docker to launch sibling containers where the actual dev tools are
   "image": "ghcr.io/joonas-fi/testrepo:latest",
+  "runArgs": [ "--mount=type=bind,source=/,destination=/host" ],
   "mounts": [
-    "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock",
-    "type=bind,source=/,destination=/bugaboo"
+    "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock"
   ]
 }
