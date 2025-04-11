@@ -6,9 +6,9 @@
   // for some reason the mount args given here do not work if given in the `mounts` field
   "runArgs": [
      // to be able to copy Bob to host-side
-     "--mount=type=bind,source=/,destination=/host",
+     "--mount=type=bind,source=/,destination=/host"
      // to be able to reuse build cache etc.
-     "--mount=type=bind,source=/tmp,destination=/tmp"
+     // "--mount=type=bind,source=/tmp,destination=/tmp"
    ],
   // Bob maps this from host-side to new containers it launches so we must copy it to host
   "onCreateCommand": ["cp", "/usr/local/bin/bob", "/host/usr/local/bin/bob"],
