@@ -5,6 +5,10 @@
   "image": "ghcr.io/joonas-fi/testrepo:latest",
   "mounts": [
     // the container needs to have Docker available so it can launch new containers
-    "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock"
+    "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock",
+    // since we launch sibling containers and map `$ bob` from host to sibling containers, we first need to copy `$ bob` to host side
+    "type=bind,source=/usr/local/bin,destination=/host/usr/local/bin",
+    // share cache across `$ bob build`, `$ bob dev` etc. invocations
+    "type=bind,source=/tmp,destination=/tmp"
   ]
 }
