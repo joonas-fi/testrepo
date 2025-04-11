@@ -7,8 +7,8 @@
     // the container needs to have Docker available so it can launch new containers
     "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock",
     // since we launch sibling containers and map `$ bob` from host to sibling containers, we first need to copy `$ bob` to host side
-    "type=bind,source=/usr/local/bin,destination=/host/usr/local/bin",
+    "type=bind,source=/,destination=/host"
     // share cache across `$ bob build`, `$ bob dev` etc. invocations
-    "type=bind,source=/tmp,destination=/tmp"
+    // "type=bind,source=/tmp,destination=/tmp"
   ]
 }
