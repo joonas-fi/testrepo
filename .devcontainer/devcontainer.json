@@ -11,7 +11,7 @@
      "--mount=type=bind,source=/tmp,destination=/tmp"
    ],
   // Bob maps this from host-side to new containers it launches so we must copy it to host
-  "onCreateCommand": "cp /usr/local/bin/bob /host/usr/local/bin/bob",
+  "onCreateCommand": ["cp", "/usr/local/bin/bob", "/host/usr/local/bin/bob"],
   "mounts": [
     "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock"
   ]
