@@ -1,5 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
   "name": "example",
-  "image": "golang:latest"
+  "image": "alpine:latest",
+  "mounts": [
+    // the container needs to have Docker available so it can launch new containers
+    "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock"
+  ]
 }
