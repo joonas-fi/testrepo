@@ -4,6 +4,7 @@
   // Turbo Bob enabled image which basically uses Bob + Docker to launch sibling containers where the actual dev tools are
   "image": "ghcr.io/joonas-fi/testrepo:latest",
   // for some reason the mount args given here do not work if given in the `mounts` field
+  "privileged": true,
   "runArgs": [
      // to be able to copy Bob to host-side
      "--mount=type=bind,source=/,destination=/host"
