@@ -18,13 +18,8 @@
   "customizations": {
   "vscode": {
     "settings": {
-      "files.associations": {
-        "*.go": "turbobob"
-      },
-      "turbobob.languageServer.command": "bob",
-      "turbobob.languageServer.args": ["tools", "langserver"],
-      "turbobob.languageServer.rootPatterns": [".git"],
-      "turbobob.languageServer.filetypes": ["go"]
+      "go.languageServer.command": "bob",
+      "go.languageServer.args": ["tools", "langserver"]
     }
   }
 }
