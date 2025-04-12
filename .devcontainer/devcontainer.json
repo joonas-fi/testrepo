@@ -1,16 +1,13 @@
 {
   "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
-  "name": "example",
-  // Turbo Bob enabled image which basically uses Bob + Docker to launch sibling containers where the actual dev tools are
-  "image": "ghcr.io/joonas-fi/testrepo:latest",
+  "name": "Turbo Bob",
+  "image": "ghcr.io/function61/turbobob-codespace:latest",
   // needed for at least mount command done by `init-bob-devcontainer.sh`
   "privileged": true,
   // for some reason the mount args given here do not work if given in the `mounts` field
   "runArgs": [
      // to be able to copy Bob to host-side
      "--mount=type=bind,source=/,destination=/host"
-     // to be able to reuse build cache etc.
-     // "--mount=type=bind,source=/tmp,destination=/tmp"
    ],
   // prepares the container so it can succesfully launch sibling containers from Bob.
   // think of this as adapter for Bob running inside devcontainer.
