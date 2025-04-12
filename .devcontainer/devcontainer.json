@@ -14,5 +14,18 @@
   "onCreateCommand": ["/usr/bin/init-bob-devcontainer.sh"],
   "mounts": [
     "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock"
-  ]
+  ],
+  "customizations": {
+  "vscode": {
+    "settings": {
+      "files.associations": {
+        "*.go": "turbobob"
+      },
+      "turbobob.languageServer.command": "bob",
+      "turbobob.languageServer.args": ["tools", "langserver"],
+      "turbobob.languageServer.rootPatterns": [".git"],
+      "turbobob.languageServer.filetypes": ["go"]
+    }
+  }
+}
 }
